@@ -1,0 +1,1886 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/pam-aspnet-juin-2010/lapplication-simupaie---version-4---aspnet--multi-vues--mono-page.html">
+      
+      
+        <link rel="prev" href="lapplication-simupaie---version-3---architecture-3-couches-avec-nhibernate.html">
+      
+      
+        <link rel="next" href="lapplication-simupaie---version-5---aspnet--service-web.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>8. L'application [SimuPaie] – version 4 – ASP.NET / multi-vues / mono-page - Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-lapplication-simupaie-version-4-aspnet-multi-vues-mono-page" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Construction d&#39;une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate" class="md-header__button md-logo" aria-label="Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8. L'application [SimuPaie] – version 4 – ASP.NET / multi-vues / mono-page
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/pam-aspnet-juin-2010" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Construction d&#39;une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate" class="md-nav__button md-logo" aria-label="Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Construction d'une application Web à trois couches avec ASP.NET 2.0, C#, Spring.Net et NHibernate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/pam-aspnet-juin-2010" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="une-rapide-introduction-a-aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Une rapide introduction à ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="letude-de-cas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. L'étude de cas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-1---aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. L'application [SimuPaie] – version 1 – ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-2---ajax--aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. L'application [SimuPaie] – version 2 – AJAX / ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-a-lorm-nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Introduction à l’ORM NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-3---architecture-3-couches-avec-nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. L'application [SimuPaie] – version 3 – architecture 3 couches avec NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. L'application [SimuPaie] – version 4 – ASP.NET / multi-vues / mono-page
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="lapplication-simupaie---version-4---aspnet--multi-vues--mono-page.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. L'application [SimuPaie] – version 4 – ASP.NET / multi-vues / mono-page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-les-vues-de-lapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Les vues de l&#x27;application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-le-projet-visual-web-developer-de-la-couche-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Le projet Visual Web Developer de la couche [web]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-le-fichier-globalcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Le fichier [Global.cs]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-la-classe-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. La classe [Simulation]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-la-page-defaultaspx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5. La page [Default.aspx]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.5. La page [Default.aspx]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#851-vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.1. Vue d&#x27;ensemble
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#852-lentete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.2. L&#x27;entête
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#853-la-vue-saisies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.3. La vue [Saisies]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#854-la-vue-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.4. La vue [Simulation]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#855-la-vue-simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.5. La vue [Simulations]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#856-la-vue-simulationsvides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.6. La vue [SimulationsVides]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#857-la-vue-erreurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5.7. La vue [Erreurs]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86-le-controleur-defaultaspxcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. Le contrôleur [Default.aspx.cs]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.6. Le contrôleur [Default.aspx.cs]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#861-vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.1. Vue d&#x27;ensemble
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#862-levenement-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.2. L&#x27;événement Load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#863-action-faire-la-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.3. Action : Faire la simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#864-action-enregistrer-la-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.4. Action : Enregistrer la simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#865-action-retour-au-formulaire-de-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.5. Action : Retour au formulaire de simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#866-action-effacer-la-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.6. Action : Effacer la simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#867-action-voir-les-simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.7. Action : Voir les simulations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#868-action-supprimer-une-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.8. Action : Supprimer une simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#869-action-terminer-la-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6.9. Action : Terminer la session
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-5---aspnet--service-web.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. L'application [SimuPaie] – version 5 – ASP.NET / service web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-6---client-aspnet-dun-service-web.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. L'application [SimuPaie] – version 6 – client ASP.NET d'un service web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-7---aspnet--multi-vues--multi-pages.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. L'application [SimuPaie] – version 7 – ASP.NET / multi-vues / multi-pages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-8---client-aspnet-dun-service-web.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. L'application [SimuPaie] – version 8 – client ASP.NET d'un service web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-9---integration-spring--nhibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. L'application [SimuPaie] – version 9 – intégration Spring / NHibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lapplication-simupaie---version-10---client-flex-dun-service-web-aspnet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. L'application [SimuPaie] – version 10 – client Flex d'un service web ASP.NET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="8-lapplication-simupaie-version-4-aspnet-multi-vues-mono-page">8. L&#x27;application [SimuPaie] – version 4 – ASP.NET / multi-vues / mono-page</h1>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Lectures conseillées</strong> : référence [1], <a href="https://stahe.github.io/aspnet1.1-avril-2004/"><strong>Développement WEB avec ASP.NET 1.1</strong></a>, paragraphes :</p>
+<ul>
+<li>
+<p>Composants serveur et contrôleur d&#x27;application</p>
+</li>
+<li>
+<p>Exemples d&#x27;applications MVC avec composants serveurs ASP</p>
+</li>
+</ul>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p>Nous étudions maintenant une version dérivée de l&#x27;application ASP.NET à trois couches étudiée précédemment et qui lui ajoute de nouvelles fonctionnalités. L&#x27;architecture de notre application évolue de la façon suivante :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000051F000002376AAA1C8B.png" style="display:inline-block; margin:4px;width:17.344cm;height:7.502cm;" class="odt-zoomable" data-zoom-src="images/100000000000051F000002376AAA1C8B.png" /></td></tr></table>
+
+<p>Le traitement d&#x27;une demande d&#x27;un client se déroule selon les étapes suivantes :</p>
+<ol>
+  <li>le client fait une demande à l&#x27;application.
+  </li>
+  <li>l&#x27;application traite cette demande. Pour ce faire, elle peut avoir besoin de l&#x27;aide de la couche [métier] qui elle-même peut avoir besoin de la couche [dao] si des données doivent être échangées avec la base de données. L&#x27;application reçoit une réponse de la couche [métier].
+  </li>
+  <li>selon celle-ci, elle choisit (3) la vue (= la réponse) à envoyer au client en lui fournissant (4) les informations (le modèle) dont elle a besoin.
+  </li>
+  <li>la réponse est envoyée au client (5)
+  </li>
+</ol>
+
+<p>On a ici une architecture web dite MVC (Modèle – Vue – Contrôleur) :</p>
+<ul>
+  <li>[Application] est le <b>contrôleur</b>. Il voit passer toutes les requêtes du client.
+  </li>
+  <li>[Saisies, Simulation, Simulations, ...] sont les <b>vues</b>. Une vue en .NET est du code ASP / HTML standard qui contient des composants qu&#x27;il convient d&#x27;initialiser. Les valeurs qu&#x27;il faut fournir à ces composants forment le <b>modèle</b> de la vue.
+  </li>
+</ul>
+
+<p>Nous allons ici implémenter le modèle (design pattern) MVC de la façon suivante :</p>
+<ul>
+  <li>les vues seront des composants [View] au sein d&#x27;une page unique [Default.aspx]
+  </li>
+  <li>le contrôleur est alors le code [Default.aspx.cs] de cette page unique.
+  </li>
+</ul>
+
+<p>Seules des applications basiques peuvent supporter cette implémentation MVC. En effet, à chaque requête, tous les composants de la page [Default.aspx] sont instanciés, donc toutes les vues. Au moment d&#x27;envoyer la réponse, l&#x27;une d&#x27;elles est choisie par le code de contrôle de l&#x27;application simplement en rendant visible le composant [View] correspondant et en cachant les autres. Si l&#x27;application a de nombreuses vues, la page [Default.aspx]  aura de nombreux composants et son coût d&#x27;instanciation peut devenir prohibitif. Par ailleurs, le mode [Design] de la page risque de devenir ingérable parce qu&#x27;ayant trop de vues. Ce type d&#x27;architecture convient pour des applications avec peu de vues et développées par une unique personne. Lorsqu&#x27;elle peut être adoptée, elle permet de développer une architecture MVC très simplement. C&#x27;est ce que nous allons voir dans cette nouvelle version.</p>
+<h2 id="81-les-vues-de-lapplication">8.1. Les vues de l&#x27;application</h2>
+<p>Les différentes vues présentées à l&#x27;utilisateur seront les suivantes :</p>
+<ul>
+<li>la vue [VueSaisies] qui présente le formulaire de simulation</li>
+</ul>
+<p><img src="images/10000000000001CA000000904A6E834D.png" style="width:7.879cm;height:2.48cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CA000000904A6E834D.png" /></p>
+<ul>
+<li>la vue [VueSimulation] utilisée pour afficher le résultat détaillé de la simulation :</li>
+</ul>
+<p><img src="images/10000000000001F9000002C268891136.png" style="width:9.35cm;height:13.079cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F9000002C268891136.png" /></p>
+<ul>
+<li>la vue [VueSimulations] qui donne la liste des simulations faites par le client</li>
+</ul>
+<p><img src="images/1000000000000336000000EB676014B3.png" style="width:15.221cm;height:4.35cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000336000000EB676014B3.png" /></p>
+<ul>
+<li>la vue [VueSimulationsVides] qui indique que le client n&#x27;a pas ou plus de simulations :</li>
+</ul>
+<p><img src="images/100000000000021A000000894C6C169C.png" style="width:9.961cm;height:2.54cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021A000000894C6C169C.png" /></p>
+<ul>
+  <li>la vue [VueErreurs] qui indique une ou plusieurs erreurs :
+  </li>
+</ul>
+
+<p><img src="images/10000000000002F10000010EB43DE331.png" style="width:13.951cm;height:5.001cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002F10000010EB43DE331.png" /></p>
+<h2 id="82-le-projet-visual-web-developer-de-la-couche-web">8.2. Le projet Visual Web Developer de la couche [web]</h2>
+<p>Le projet Visual Web Developer de la couche [web] est le suivant :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003BD000001F521E4FA05.png" style="display:inline-block; margin:4px;width:12.661cm;height:6.629cm;" class="odt-zoomable" data-zoom-src="images/10000000000003BD000001F521E4FA05.png" /></td></tr></table>
+
+<ul>
+  <li>en [1] on trouve :
+  </li>
+  <li>le fichier de configuration [Web.config] de l&#x27;application – est identique à celui de l&#x27;application précédente.
+  </li>
+  <li>le fichier [Global.cs] qui gère les événements de l&#x27;application web, ici son démarrage -  est identique à celui de l&#x27;application précédente si ce n&#x27;est qu&#x27;il gère également le démarrage de la session utilisateur.
+  </li>
+  <li>le formulaire [Default.aspx] de l&#x27;application – contient les différentes vues de l&#x27;application.
+  </li>
+</ul>
+
+<ul>
+  <li>en [2] on trouve les références du projet – sont identiques à celles de la version précédente
+  </li>
+</ul>
+
+<h2 id="83-le-fichier-globalcs">8.3. Le fichier [Global.cs]</h2>
+<p>Le fichier [Global.cs] qui gère les événements de l&#x27;application web, est identique à celui de l&#x27;application précédente si ce n&#x27;est qu&#x27;il gère en plus le démarrage de la session utilisateur :</p>
+<p><strong>Global.cs</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#0000ff">using</span> System;</span>
+<span class="odt-code-line"><span style="color:#0000ff">using</span> System.Web;</span>
+<span class="odt-code-line"><span style="color:#0000ff">using</span> Pam.Dao.Entites;</span>
+<span class="odt-code-line"><span style="color:#0000ff">using</span> Pam.Metier.Service;</span>
+<span class="odt-code-line"><span style="color:#0000ff">using</span> Spring.Context.Support;</span>
+<span class="odt-code-line"><span style="color:#0000ff">using</span> System.Collections.Generic;</span>
+<span class="odt-code-line"><span style="color:#0000ff">using</span> istia.st.pam.web;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#0000ff">namespace</span> pam_v4</span>
+<span class="odt-code-line">{</span>
+<span class="odt-code-line">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Global</span> : <span style="color:#2b91af">HttpApplication</span></span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">        <span style="color:#008000">// --- données statiques de l&#x27;application ---</span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">Employe</span>[] Employes;</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#0000ff">string</span> Msg = <span style="color:#0000ff">string</span>.Empty;</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#0000ff">bool</span> Erreur = <span style="color:#0000ff">false</span>;</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">static</span> <span style="color:#2b91af">IPamMetier</span> PamMetier = <span style="color:#0000ff">null</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">        <span style="color:#008000">// démarrage de l&#x27;application</span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> Application_Start(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">        <span style="color:#008000">// démarrage de la session d&#x27;un utilisateur </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">void</span> Session_Start(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// on met une liste de simulations vide dans la session </span></span>
+<span class="odt-code-line">            Session[<span style="color:#a31515">&quot;simulations&quot;</span>] = <span style="color:#0000ff">new</span> <span style="color:#2b91af">List</span>&lt;<span style="color:#2b91af">Simulation</span>&gt;();</span>
+<span class="odt-code-line">        } </span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<ul>
+  <li>lignes 27-34 : on gère le démarrage de la session. Nous mettrons dans celle-ci la liste des simulations faites par l&#x27;utilisateur.
+  </li>
+  <li>ligne 30 : une liste de simulations vide est créée. Une simulation est un objet de type [Simulation] que nous allons détailler prochainement.
+  </li>
+  <li>ligne 31 : la liste de simulations est placée dans la session associée à la clé &quot; simulations &quot;
+  </li>
+</ul>
+
+<h2 id="84-la-classe-simulation">8.4. La classe [Simulation]</h2>
+<p>Un objet de type [Simulation] sert à encapsuler une ligne du tableau des simulations :</p>
+<p><img src="images/1000000000000336000000EB676014B3.png" style="width:15.221cm;height:4.35cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000336000000EB676014B3.png" /></p>
+<p>Son code est le suivant :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="color:#0000ff">namespace</span> Pam.Web</span>
+<span class="odt-code-line">{</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Simulation</span></span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// données d&#x27;une simulation </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> Nom { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">string</span> Prenom { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> HeuresTravaillees { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">int</span> JoursTravailles { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> SalaireBase { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> Indemnites { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> CotisationsSociales { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> <span style="color:#0000ff">double</span> SalaireNet { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">set</span>; }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">        <span style="color:#008000">// constructeurs </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> Simulation()</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">        <span style="color:#0000ff">public</span> Simulation(<span style="color:#0000ff">string</span> nom, <span style="color:#0000ff">string</span> prenom, <span style="color:#0000ff">double</span> heuresTravailllees, <span style="color:#0000ff">int</span> joursTravailles, <span style="color:#0000ff">double</span> salaireBase, <span style="color:#0000ff">double</span> indemnites, <span style="color:#0000ff">double</span> cotisationsSociales, <span style="color:#0000ff">double</span> salaireNet)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            {</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.Nom = nom;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.Prenom = prenom;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.HeuresTravaillees = heuresTravailllees;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.JoursTravailles = joursTravailles;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.SalaireBase = salaireBase;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.Indemnites = indemnites;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.CotisationsSociales = cotisationsSociales;</span>
+<span class="odt-code-line">                <span style="color:#0000ff">this</span>.SalaireNet = salaireNet;</span>
+<span class="odt-code-line">            }</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p>Les champs de la classe correspondent aux colonnes du tableau des simulations.</p>
+<h2 id="85-la-page-defaultaspx">8.5. La page [Default.aspx]</h2>
+<h3 id="851-vue-densemble">8.5.1. Vue d&#x27;ensemble</h3>
+<p>La page [Default.aspx] contient plusieurs composants [View], un pour chaque vue. Son squelette est le suivant :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line">&lt;%<span style="color:#0000ff">@</span> <span style="color:#a31515">Page</span> <span style="color:#ff0000">Language</span><span style="color:#0000ff">=&quot;C#&quot;</span> <span style="color:#ff0000">AutoEventWireup</span><span style="color:#0000ff">=&quot;true&quot;</span> <span style="color:#ff0000">CodeFile</span><span style="color:#0000ff">=&quot;Default.aspx.cs&quot;</span> <span style="color:#ff0000">Inherits</span><span style="color:#0000ff">=&quot;pam_v4.PagePam&quot;</span> %&gt;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;!</span><span style="color:#a31515">DOCTYPE</span> <span style="color:#ff0000">html</span> <span style="color:#ff0000">PUBLIC</span> <span style="color:#0000ff">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span style="color:#0000ff">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">html</span> <span style="color:#ff0000">xmlns</span><span style="color:#0000ff">=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">head</span> <span style="color:#ff0000">id</span><span style="color:#0000ff">=&quot;Head1&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">title</span><span style="color:#0000ff">&gt;</span>Simulateur de paie<span style="color:#0000ff">&lt;/</span><span style="color:#a31515">title</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;/</span><span style="color:#a31515">head</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">body</span> <span style="color:#ff0000">background</span><span style="color:#0000ff">=&quot;ressources/standard.jpg&quot;&gt;</span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">form</span> <span style="color:#ff0000">id</span><span style="color:#0000ff">=&quot;form1&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">ScriptManager</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;ScriptManager1&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span> <span style="color:#ff0000">EnablePartialRendering</span><span style="color:#0000ff">=&quot;true&quot;</span> <span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">UpdatePanel</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;UpdatePanelPam&quot;</span> <span style="color:#ff0000">UpdateMode</span><span style="color:#0000ff">=&quot;Conditional&quot;&gt;</span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">ContentTemplate</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;</span><span style="color:#a31515">table</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">tr</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">td</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">h2</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                            Simulateur de calcul de paie<span style="color:#0000ff">&lt;/</span><span style="color:#a31515">h2</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">td</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">td</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">label</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                            <span style="color:#ff0000">&amp;nbsp;&amp;nbsp;&amp;nbsp</span><span style="color:#0000ff">&lt;/</span><span style="color:#a31515">label</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">UpdateProgress</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;UpdateProgress1&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">                            <span style="color:#0000ff">&lt;</span><span style="color:#a31515">ProgressTemplate</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">img</span> <span style="color:#ff0000">src</span><span style="color:#0000ff">=&quot;images/indicator.gif&quot;</span> <span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line">                                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">Label</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;Label5&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span> <span style="color:#ff0000">BackColor</span><span style="color:#0000ff">=&quot;#FF8000&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                        </span> <span style="color:#ff0000">EnableViewState</span><span style="color:#0000ff">=&quot;False&quot; </span><span style="color:#ff0000">Text</span><span style="color:#0000ff">=&quot;Calcul en cours. Patientez ....&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                        &lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">Label</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                            <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">ProgressTemplate</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">UpdateProgress</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">td</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;</span><span style="color:#a31515">td</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                       <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;LinkButtonFaireSimulation&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span> </span>
+<span class="odt-code-line">                                <span style="color:#ff0000">CausesValidation</span><span style="color:#0000ff">=&quot;False&quot;</span> <span style="color:#ff0000">OnClick</span><span style="color:#0000ff">=&quot;LinkButtonFaireSimulation_Click&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                    </span>| Faire la simulation<span style="color:#0000ff">&lt;</span><span style="color:#a31515">br</span> <span style="color:#0000ff">/&gt;&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                       <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;LinkButtonEffacerSimulation&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span></span>
+<span class="odt-code-line">                                     <span style="color:#ff0000">CausesValidation</span><span style="color:#0000ff">=&quot;False&quot; </span><span style="color:#ff0000">OnClick</span><span style="color:#0000ff">=&quot;LinkButtonEffacerSimulation_Click&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                    </span>| Effacer la simulation<span style="color:#0000ff">&lt;</span><span style="color:#a31515">br</span> <span style="color:#0000ff">/&gt;&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                       <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;LinkButtonVoirSimulations&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span> </span>
+<span class="odt-code-line">                                <span style="color:#ff0000">CausesValidation</span><span style="color:#0000ff">=&quot;False&quot; </span><span style="color:#ff0000">OnClick</span><span style="color:#0000ff">=&quot;LinkButtonVoirSimulations_Click&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                    </span>| Voir les simulations<span style="color:#0000ff">&lt;</span><span style="color:#a31515">br</span> <span style="color:#0000ff">/&gt;&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;LinkButtonFormulaireSimulation&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span></span>
+<span class="odt-code-line">                                <span style="color:#ff0000">CausesValidation</span><span style="color:#0000ff">=&quot;False&quot; </span><span style="color:#ff0000">OnClick</span><span style="color:#0000ff">=&quot;LinkButtonFormulaireSimulation_Click&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                </span>| Retour au formulaire de simulation<span style="color:#0000ff">&lt;</span><span style="color:#a31515">br</span> <span style="color:#0000ff">/&gt;&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;LinkButtonEnregistrerSimulation&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span></span>
+<span class="odt-code-line">                                <span style="color:#ff0000">CausesValidation</span><span style="color:#0000ff">=&quot;False&quot; </span><span style="color:#ff0000">OnClick</span><span style="color:#0000ff">=&quot;LinkButtonEnregistrerSimulation_Click&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                    </span>| Enregistrer la simulation<span style="color:#0000ff">&lt;</span><span style="color:#a31515">br</span> <span style="color:#0000ff">/&gt;&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;LinkButtonTerminerSession&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;</span></span>
+<span class="odt-code-line">                                <span style="color:#ff0000">CausesValidation</span><span style="color:#0000ff">=&quot;False&quot; </span><span style="color:#ff0000">OnClick</span><span style="color:#0000ff">=&quot;LinkButtonTerminerSession_Click&quot;&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">                                    </span>| Terminer la session<span style="color:#0000ff">&lt;</span><span style="color:#a31515">br</span> <span style="color:#0000ff">/&gt;&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">LinkButton</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">td</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">table</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;</span><span style="color:#a31515">hr</span> <span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">MultiView</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;Vues1&quot;</span> <span style="color:#ff0000">ActiveViewIndex</span><span style="color:#0000ff">=&quot;0&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;VueSaisies&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">MultiView</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">MultiView</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;Vues2&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;VueSimulation&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;VueSimulations&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;VueSimulationsVides&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;VueErreurs&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">View</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">MultiView</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">ContentTemplate</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">asp</span><span style="color:#0000ff">:</span><span style="color:#a31515">UpdatePanel</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">&lt;/</span><span style="color:#a31515">form</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;/</span><span style="color:#a31515">body</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;/</span><span style="color:#a31515">html</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>ligne 10 : la balise pour disposer des extensions Ajax
+  </li>
+  <li>lignes 11-73 : le conteneur <i>UpdatePanel</i> mis à jour par des appels Ajax
+  </li>
+  <li>lignes 12-72 : le contenu du conteneur <i>UpdatePanel</i> 
+  </li>
+  <li>lignes 13-52 : l&#x27;entête qui sera présent dans chaque vue. Il présente à l&#x27;utilisateur la liste des actions possibles sous la forme d&#x27;une liste de liens.
+  </li>
+  <li>ligne 33 : on notera l&#x27;attribut <i>CausesValidation=&quot;False&quot;</i> qui fait que les validateurs de la page ne seront pas exécutés <b>implicitement</b> lorsque le lien sera cliqué. Lorsque cet attribut est absent, sa valeur par défaut est <i>True</i>. La validation de la page pourra être faite <b>explicitement</b> dans le code exécuté côté serveur par l&#x27;opération <i>Page.Validate</i>.
+  </li>
+  <li>lignes 53-57 : un composant [MultiView] avec une unique vue [VueSaisies]. Pour cette raison, on a mis en dur, ligne 53, le n° de la vue à afficher : <i>ActiveViewIndex=&quot;0&quot; </i>
+  </li>
+  <li>lignes 53-67 : un composant [MultiView] avec quatre vues : la vue [VueSimulation] lignes 59-61, la vue [VueSimulations] lignes 62-64, la vue [VueSimulationsVides] lignes 65-67, la vue [VueErreurs] lignes 68-70. Un composant [MultiView] n&#x27;affiche qu&#x27;une vue à la fois. Pour afficher la vue n° i du composant <i>Vues2</i>, on écrira le code :
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Vues2.ActiveViewIndex=i
+</code></pre></div>
+<p><a id="3tier-multivues-entete"></a></p>
+<h3 id="852-lentete">8.5.2. L&#x27;entête</h3>
+<p>L&#x27;entête est formé des composants suivants :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004E70000014A4E1852BD.png" style="display:inline-block; margin:4px;width:16.603cm;height:4.366cm;" class="odt-zoomable" data-zoom-src="images/10000000000004E70000014A4E1852BD.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>N°</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Nom</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Rôle</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButton</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButtonFaireSimulation</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">demande le calcul de la simulation</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButton</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButtonEffacerSimulation</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">efface le formulaire de saisie</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButton</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButtonVoirSimulations</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">affiche la liste des simulations déjà faites</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButton</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButtonFormulaireSimulation</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ramène au formulaire de saisie</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>5
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButton</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButtonEnregistrerSimulation</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">enregistre la simulation courante dans la liste des simulations</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>6
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButton</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">LinkButtonTerminerSession</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">abandonne la session courante</div></td></tr></table>
+
+<p><a id="3tier-multivues-saisies"></a></p>
+<h3 id="853-la-vue-saisies">8.5.3. La vue [Saisies]</h3>
+<p>Le composant [View] nommé [VueSaisies] est le suivant :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000046C000000B51AE0A667.png" style="display:inline-block; margin:4px;width:14.975cm;height:2.395cm;" class="odt-zoomable" data-zoom-src="images/100000000000046C000000B51AE0A667.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>N°</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Nom</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Rôle</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">DropDownList</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ComboBoxEmployes</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Contient la liste des noms des employés</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">TextBox</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">TextBoxHeures</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Nombre d&#x27;heures travaillées – nombre réel</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">TextBox</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">TextBoxJours</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Nombre de jours travaillés – nombre entier</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RequiredFieldValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RequiredFieldValidatorHeures</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vérifie que le champ [2] [TextBoxHeures] n&#x27;est pas vide</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>5
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RegularExpressionValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RegularExpressionValidatorHeures</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vérifie que le champ [2] [TextBoxHeures] est un nombre réel &gt;=0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>6
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RequiredFieldValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RequiredFieldValidatorJours</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vérifie que le champ [3] [TextBoxJours] n&#x27;est pas vide</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>7
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RegularExpressionValidator</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RegularExpressionValidatorJours</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">vérifie que le champ [3] [TextBoxJours] est un nombre entier &gt;=0</div></td></tr></table>
+
+<p><a id="3tier-multivues-simulation"></a></p>
+<h3 id="854-la-vue-simulation">8.5.4. La vue [Simulation]</h3>
+<p>Le composant [View] nommé [VueSimulation] est le suivant :</p>
+<p><img src="images/10000000000001EE00000238363EC65E.png" style="width:9.149cm;height:10.52cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE00000238363EC65E.png" /></p>
+<p>Il n&#x27;est composé que de composants [Label] dont les ID sont indiqués ci-dessus.</p>
+<p><a id="3tier-multivues-simulations"></a></p>
+<h3 id="855-la-vue-simulations">8.5.5. La vue [Simulations]</h3>
+<p>Le composant [View] nommé [VueSimulations] est le suivant :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005CA000001B8CD057B34.png" style="display:inline-block; margin:4px;width:17.997cm;height:5.343cm;" class="odt-zoomable" data-zoom-src="images/10000000000005CA000001B8CD057B34.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>N°</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Nom</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Rôle</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">GridView</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">GridViewSimulations</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Contient la liste des simulations</div></td></tr></table>
+
+<p>Les propriétés du composant [GridViewSimulations] ont été définies de la façon suivante :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005DD00000208B77E5E78.png" style="display:inline-block; margin:4px;width:17.997cm;height:6.234cm;" class="odt-zoomable" data-zoom-src="images/10000000000005DD00000208B77E5E78.png" /></td></tr></table>
+
+<ul>
+  <li>en [1] : clic droit sur le [GridView] / option [Mise en forme automatique]
+  </li>
+  <li>en [2] : choisir un type d&#x27;affichage pour le [GridView]
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005CF00000188B9745D88.png" style="display:inline-block; margin:4px;width:17.997cm;height:4.743cm;" class="odt-zoomable" data-zoom-src="images/10000000000005CF00000188B9745D88.png" /></td></tr></table>
+
+<ul>
+  <li>en [3] : sélectionner les propriétés du [GridView]
+  </li>
+  <li>en [4] : éditer les colonnes du [GridView]
+  </li>
+  <li>en [5] : ajouter une colonne de type [BoundField] qui sera liée (bound) à l&#x27;une des propriétés publiques de l&#x27;objet à afficher dans la ligne du [GridView]. L&#x27;objet affiché ici, sera un objet de type [Simulation].
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000375000000BC02DE191B.png" style="display:inline-block; margin:4px;width:11.709cm;height:2.487cm;" class="odt-zoomable" data-zoom-src="images/1000000000000375000000BC02DE191B.png" /></td></tr></table>
+
+<ul>
+  <li>en [6] : donner le titre de la colonne
+  </li>
+  <li>en [7] : donner le nom de la propriété de la classe [Simulation] qui sera associée à cette colonne.
+  </li>
+  <li>[DataFormatString] indique comment doivent être formatées les valeurs affichées dans la colonne.
+  </li>
+</ul>
+
+<p>Les colonnes du composant [GridViewSimulations] ont les propriétés suivantes :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>N°</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Propriétés</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Nom</b>, DataField : <b>Nom</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Prénom</b>, DataField : <b>Prenom</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Heures travaillées</b>, DataField : <b>HeuresTravaillees</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>5
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Jours travaillés</b>, DataField : <b>JoursTravailles</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>6
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Salaire de base</b>, DataField : <b>SalaireBase</b>, DataFormatString : <b>{0:C}</b> (format monétaire, C=Currency) – affichera le sigle de l&#x27;euro.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>7
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Indemnités</b>, Data Field : <b>Indemnites</b>, DataFormatString : <b>{0:C}</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>8
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Cotis. sociales</b>, DataField : <b>CotisationsSociales</b>, DataFormatString : <b>{0:C}</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>9
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Type : <b>BoundField</b>, HeaderText : <b>Salaire net</b>, DataField : <b>SalaireNet</b>, DataFormatString : <b>{0:C}</b></div></td></tr></table>
+
+<p>On prêtera attention au fait que le champ [DataField] doit correspondre à une <strong>propriété existante</strong> de la classe [Simulation]. A l&#x27;issue de cette phase, toutes les colonnes de type [BoundField] ont été créées :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001B50000014F1E9EFA4E.png" style="display:inline-block; margin:4px;width:5.782cm;height:4.433cm;" class="odt-zoomable" data-zoom-src="images/10000000000001B50000014F1E9EFA4E.png" /></td></tr></table>
+
+<ul>
+  <li>en [1] : les colonnes créées pour le [GridView]
+  </li>
+  <li>en [2] : la génération automatique des colonnes doit être inhibée lorsque c&#x27;est le développeur qui les définit lui-même comme nous venons de le faire.
+  </li>
+</ul>
+
+<p>Il nous reste à créer la colonne des liens [Retirer] :</p>
+<p><img src="images/100000000000032000000056785E2224.png" style="width:14.82cm;height:1.589cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000032000000056785E2224.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005DE0000015363DAE287.png" style="display:inline-block; margin:4px;width:17.997cm;height:4.062cm;" class="odt-zoomable" data-zoom-src="images/10000000000005DE0000015363DAE287.png" /></td></tr></table>
+
+<ul>
+  <li>en [1] : ajouter une colonne de type [CommandField / Supprimer]
+  </li>
+  <li>en [2] : <i>ButtonType=Link</i> pour avoir un lien dans la colonne plutôt qu&#x27;un bouton
+  </li>
+  <li>en [3] : <i>CausesValidation=False</i>, un clic sur le lien ne provoquera pas l&#x27;exécution des contrôles de validation qui peuvent se trouver sur la page. En effet, la suppression d&#x27;une simulation ne nécessite aucune vérification de données.
+  </li>
+  <li>en [4] : seul le lien de suppression sera visible.
+  </li>
+  <li>en [5] : le texte de ce lien
+  </li>
+</ul>
+
+<p><a id="3tier-multivues-simulationsvides"></a></p>
+<h3 id="856-la-vue-simulationsvides">8.5.6. La vue [SimulationsVides]</h3>
+<p>Le composant [View] nommé [VueSimulationsVides] contient simplement du texte :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001C70000004025D47492.png" style="display:inline-block; margin:4px;width:8.43cm;height:1.191cm;" class="odt-zoomable" data-zoom-src="images/10000000000001C70000004025D47492.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><a id="3tier-multivues-erreurs"></a></p>
+<h3 id="857-la-vue-erreurs">8.5.7. La vue [Erreurs]</h3>
+<p>Le composant [View] nommé [VueErreurs] est le suivant :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000021B000001057F011E85.png" style="display:inline-block; margin:4px;width:7.131cm;height:3.454cm;" class="odt-zoomable" data-zoom-src="images/100000000000021B000001057F011E85.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>N°</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Nom</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Rôle</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Repeater</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">RptErreurs</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">affiche une liste de messages d&#x27;erreur</div></td></tr></table>
+
+<p>Le composant [Repeater] permet de répéter un code ASP.NET / HTML pour chaque objet d&#x27;une source de données, généralement une collection. Ce code est défini directement dans le code source ASP.NET de la page :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line">                <span style="color:#0000ff">&lt;</span><span style="color:#800000">asp</span><span style="color:#0000ff">:</span><span style="color:#800000">Repeater</span> <span style="color:#ff0000">ID</span><span style="color:#0000ff">=&quot;RptErreurs&quot;</span> <span style="color:#ff0000">runat</span><span style="color:#0000ff">=&quot;server&quot;&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;</span><span style="color:#800000">li</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                            &lt;%<span style="color:#0000ff">#</span> Container.DataItem %&gt;</span>
+<span class="odt-code-line">                        <span style="color:#0000ff">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line">                    <span style="color:#0000ff">&lt;/</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;/</span><span style="color:#800000">asp</span><span style="color:#0000ff">:</span><span style="color:#800000">Repeater</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>ligne 2 : &lt;<i>ItemTemplate</i>&gt; définit le code qui sera répété pour chaque élément de la source de données.
+  </li>
+  <li>ligne 4 : affiche la valeur de l&#x27;expression <i>Container.DataItem</i> qui désigne l&#x27;élément courant de la source de données. Cet élément étant un objet, c&#x27;est la méthode <i>ToString</i> de cet objet qui est utilisée pour inclure celui-ci dans le flux HTML de la page. Notre collection d&#x27;objets sera une collection <i>List(Of String)</i> contenant des messages d&#x27;erreur. Les lignes 3-5 inclueront des séquences <i>&lt;li&gt;Message&lt;/li&gt;</i> dans le flux HTML de la page.
+  </li>
+</ul>
+
+<h2 id="86-le-controleur-defaultaspxcs">8.6. Le contrôleur [Default.aspx.cs]</h2>
+<h3 id="861-vue-densemble">8.6.1. Vue d&#x27;ensemble</h3>
+<p>Revenons à l&#x27;architecture MVC de l&#x27;application :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000051F0000023DAC5DF3C0.png" style="display:inline-block; margin:4px;width:17.344cm;height:7.581cm;" class="odt-zoomable" data-zoom-src="images/100000000000051F0000023DAC5DF3C0.png" /></td></tr></table>
+
+<ul>
+  <li>[Default.aspx.cs] qui est le code de contrôle de la page unique [Default.aspx] est le contrôleur de l&#x27;application.
+  </li>
+  <li>[Global] est l&#x27;objet de type [HttpApplication] qui initialise l&#x27;application et qui dispose d&#x27;une référence sur la couche [métier].
+  </li>
+</ul>
+
+<p>Le squelette du code du contrôleur [Default.aspx.cs] est le suivant :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#0000ff">using</span> System.Collections.Generic;</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#0000ff">public</span> <span style="color:#0000ff">partial</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">PagePam</span> : <span style="color:#2b91af">Page</span></span>
+<span class="odt-code-line">{</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">private</span> <span style="color:#0000ff">void</span> setVues(<span style="color:#0000ff">bool</span> boolVues1, <span style="color:#0000ff">bool</span> boolVues2, <span style="color:#0000ff">int</span> index)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// on affiche les vues demandées </span></span>
+<span class="odt-code-line">        <span style="color:#008000">// boolVues1 : true si le multivues Vues1 doit être visible </span></span>
+<span class="odt-code-line">        <span style="color:#008000">// boolVues1 : true si le multivues Vues2 doit être visible </span></span>
+<span class="odt-code-line">        <span style="color:#008000">// index : index de la vue de Vues2 à afficher </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">private</span> <span style="color:#0000ff">void</span> setMenu(<span style="color:#0000ff">bool</span> boolFaireSimulation, <span style="color:#0000ff">bool</span> boolEnregistrerSimulation, <span style="color:#0000ff">bool</span> boolEffacerSimulation, <span style="color:#0000ff">bool</span> boolFormulaireSimulation, <span style="color:#0000ff">bool</span> boolVoirSimulations, <span style="color:#0000ff">bool</span> boolTerminerSession)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// on fixe les options de menu </span></span>
+<span class="odt-code-line">        <span style="color:#008000">// chaque booléen est affecté à la propriété Visible du lien correspondant </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#008000">// chargement de la page </span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> Page_Load(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// traitement requête initiale </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">if</span> (!IsPostBack)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonFaireSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonEffacerSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">....</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonVoirSimulations_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonEnregistrerSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonTerminerSession_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonFormulaireSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> GridViewSimulations_RowDeleting(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">GridViewDeleteEventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p>A la requête initiale (GET) de l&#x27;utilisateur, seul l&#x27;événement <em>Load</em> des lignes 24-31 est traité. Aux requêtes suivantes (POST) faites via les liens du menu, deux événements sont traités :</p>
+<ol>
+  <li>l&#x27;événement <i>Load</i> (24-31) mais le test du booléen <i>Page.IsPostback</i> (ligne 27) fait que rien ne sera fait.
+  </li>
+  <li>l&#x27;événement lié au lien qui a été cliqué :
+  </li>
+</ol>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004F40000014E357BB488.png" style="display:inline-block; margin:4px;width:16.775cm;height:4.419cm;" class="odt-zoomable" data-zoom-src="images/10000000000004F40000014E357BB488.png" /></td></tr></table>
+
+<ul>
+  <li>lignes 33-36 : traitent le clic sur le lien [1]
+  </li>
+  <li>lignes 38-41 : traitent le clic sur le lien [2]
+  </li>
+  <li>lignes 43-46 : traitent le clic sur le lien [3]
+  </li>
+  <li>lignes 58-61 : traitent le clic sur le lien [4]
+  </li>
+  <li>lignes 48-51 : traitent le clic sur le lien [5]
+  </li>
+  <li>lignes 53-56 : traitent le clic sur le lien [6]
+  </li>
+</ul>
+
+<p>Pour factoriser des séquences de code revenant souvent, deux méthodes internes ont été créées :</p>
+<ul>
+  <li><b>setVues</b>, lignes 7-14 : fixe la ou les vues à afficher
+  </li>
+  <li><b>setMenu</b>, lignes 16-21 : fixe les options de menu à afficher
+  </li>
+</ul>
+
+<h3 id="862-levenement-load">8.6.2. L&#x27;événement Load</h3>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Lectures conseillées</strong> : référence [1], <a href="https://stahe.github.io/aspnet1.1-avril-2004/">Développement WEB avec ASP.NET 1.1</a>  : </p>
+<ul>
+<li>paragraphe Composant [Repeater] et liaison de données.</li>
+</ul>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p>La première vue présentée à l&#x27;utilisateur est celle du formulaire vide :</p>
+<p><img src="images/100000000000024C0000008DCF7C1030.png" style="width:9.329cm;height:2.24cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024C0000008DCF7C1030.png" /></p>
+<p>L&#x27;initialisation de l&#x27;application nécessite l&#x27;accès à une source de données qui peut échouer. Dans ce cas, la première page est une page d&#x27;erreurs :</p>
+<p><img src="images/100000000000022A0000012501D74D84.png" style="width:10.261cm;height:5.429cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000022A0000012501D74D84.png" /></p>
+<p>L&#x27;événement [Load] est traité de façon analogue à celle des versions ASP.NET précédentes :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#008000">// chargement de la page </span></span>
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> Page_Load(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// traitement requête initiale </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">if</span> (!IsPostBack)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// des erreurs d&#x27;initialisation ? </span></span>
+<span class="odt-code-line">            <span style="color:#0000ff">if</span> (<span style="color:#2b91af">Global</span>.Erreur)</span>
+<span class="odt-code-line">            {</span>
+<span class="odt-code-line">                <span style="color:#008000">// affichage vue [erreurs] </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">                <span style="color:#008000">// positionnement menu </span></span>
+<span class="odt-code-line">                ...</span>
+<span class="odt-code-line">                <span style="color:#0000ff">return</span>;</span>
+<span class="odt-code-line">            }</span>
+<span class="odt-code-line">            <span style="color:#008000">// chargement des noms des employés dans le combo </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">            <span style="color:#008000">// positionnement menu </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">            <span style="color:#008000">// affichage vue [saisie] </span></span>
+<span class="odt-code-line"> ...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="863-action-faire-la-simulation">8.6.3. Action : Faire la simulation</h3>
+<p>Dans ce qui suit, l&#x27;écran noté (1) est celui de la demande de l&#x27;utilisateur, l&#x27;écran noté (2) la réponse qui lui est envoyée par l&#x27;application web. A partir de l&#x27;écran d&#x27;accueil, l&#x27;utilisateur peut commencer une simulation :</p>
+<p><img src="images/10000000000001C80000008E4C12237A.png" style="width:8.451cm;height:2.63cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C80000008E4C12237A.png" /></p>
+<div style="margin:0 0 0.75em 0; background-color:#ffcc99; padding:0.35em 0.6em">- (1) : l&#x27;utilisateur demande une simulation</div>
+
+<p><img src="images/10000000000001F1000002BCB4465013.png" style="width:9.2cm;height:12.959cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F1000002BCB4465013.png" /></p>
+<div style="margin:0 0 0.75em 0; background-color:#ffcc99; padding:0.35em 0.6em">- (2) : résultat de la simulation    </div>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006410000019908C73E19.png" style="display:inline-block; margin:4px;width:17.997cm;height:4.597cm;" class="odt-zoomable" data-zoom-src="images/10000000000006410000019908C73E19.png" /></td></tr></table>
+
+<p>La procédure qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonFaireSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// calcul du salaire </span></span>
+<span class="odt-code-line">        <span style="color:#008000">// page valide ? </span></span>
+<span class="odt-code-line">        Page.Validate();</span>
+<span class="odt-code-line">        <span style="color:#0000ff">if</span> (!Page.IsValid)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// affichage vue [saisie] </span></span>
+<span class="odt-code-line">            ...</span>
+<span class="odt-code-line">            <span style="color:#0000ff">return</span>;</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">        <span style="color:#008000">// la page est valide - on récupère les saisies </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">double</span> HeuresTravaillées = ...;</span>
+<span class="odt-code-line">        <span style="color:#0000ff">int</span> JoursTravaillés = ...;</span>
+<span class="odt-code-line">        <span style="color:#008000">// on calcule le salaire de l&#x27;employé </span></span>
+<span class="odt-code-line">        <span style="color:#2b91af">FeuilleSalaire</span> feuillesalaire;</span>
+<span class="odt-code-line">        <span style="color:#0000ff">try</span></span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            feuillesalaire = ...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">catch</span> (<span style="color:#2b91af">PamException</span> ex)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// affichage vue [erreurs] </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">            <span style="color:#0000ff">return</span>;</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">        <span style="color:#008000">// on met le résultat dans la session </span></span>
+<span class="odt-code-line">        Session[<span style="color:#a31515">&quot;simulation&quot;</span>] = ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// affichage résultats </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">        <span style="color:#008000">// affichage vues [saisie, employe, salaire] </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// affichage menu </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="864-action-enregistrer-la-simulation">8.6.4. Action : Enregistrer la simulation</h3>
+<p>Une fois la simulation faite, l&#x27;utilisateur peut demander son enregistrement :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001DB000001106FA1EDB2.png" style="display:inline-block; margin:4px;width:7.541cm;height:4.32cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DB000001106FA1EDB2.png" /></td></tr></table>
+
+<div style="margin:0 0 0.75em 0; background-color:#ffcc99; padding:0.35em 0.6em">- (1) : demande d&#x27;enregistrement de la simulation courante</div>
+
+<p><img src="images/100000000000033A000000D760DD1474.png" style="width:13.109cm;height:3.41cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000033A000000D760DD1474.png" /></p>
+<div style="margin:0 0 0.75em 0; background-color:#ffcc99; padding:0.35em 0.6em">- (2) : la simulation est enregistrée et la liste des simulations faites est présentée</div>
+
+<p>La procédure qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonEnregistrerSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// on enregistre la simulation courante dans la liste des simulations présente dans la session </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// on affiche la vue [simulations] </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="865-action-retour-au-formulaire-de-simulation">8.6.5. Action : Retour au formulaire de simulation</h3>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Lectures conseillées</strong> : référence [1], [<a href="https://stahe.github.io/aspnet1.1-avril-2004/">Développement WEB avec ASP.NET 1.1</a> ] : le rôle du champ caché _VIEWSTATE</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p>Une fois la liste des simulations présentée, l&#x27;utilisateur peut demander à revenir au formulaire de simulation :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000063D000001BB97C6D3B4.png" style="display:inline-block; margin:4px;width:17.997cm;height:4.992cm;" class="odt-zoomable" data-zoom-src="images/100000000000063D000001BB97C6D3B4.png" /></td></tr></table>
+
+<p>On notera que l&#x27;écran (2) présente le formulaire tel qu&#x27;il a été saisi. Il faut se rappeler ici que ces différentes vues appartiennent à une même page. Entre les différentes requêtes, les valeurs des composants sont maintenues par le mécanisme du <em>ViewState</em> si ces composants ont leur propriété <em>EnableViewState</em> à <em>true</em>.</p>
+<p>La procédure qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonFormulaireSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// affichage vue [saisie] </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// positionnement menu </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="866-action-effacer-la-simulation">8.6.6. Action : Effacer la simulation</h3>
+<p>Une fois revenu au formulaire de simulation, l&#x27;utilisateur peut demander à effacer les saisies présentes :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000063C000001AC3EF53359.png" style="display:inline-block; margin:4px;width:17.997cm;height:4.826cm;" class="odt-zoomable" data-zoom-src="images/100000000000063C000001AC3EF53359.png" /></td></tr></table>
+
+<p>La procédure qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonEffacerSimulation_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// RAZ du formulaire </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="867-action-voir-les-simulations">8.6.7. Action : Voir les simulations</h3>
+<p>L&#x27;utilisateur peut demander à voir les simulations qu&#x27;il a déjà faites :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004A2000001A7E2C12E7D.png" style="display:inline-block; margin:4px;width:15.69cm;height:5.597cm;" class="odt-zoomable" data-zoom-src="images/10000000000004A2000001A7E2C12E7D.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005E8000001DB6C55B798.png" style="display:inline-block; margin:4px;width:17.997cm;height:5.653cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E8000001DB6C55B798.png" /></td></tr></table>
+
+<p>La procédure qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonVoirSimulations_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// on récupère les simulations dans la session</span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// y-a-t-il des simulations ? </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">if</span> (...)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// vue [simulations] visible </span></span>
+<span class="odt-code-line">...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">else</span></span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// vue [SimulationsVides] </span></span>
+<span class="odt-code-line">            ...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">        <span style="color:#008000">// on fixe le menu </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">    }</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="868-action-supprimer-une-simulation">8.6.8. Action : Supprimer une simulation</h3>
+<p>L&#x27;utilisateur peut demander à supprimer une simulation :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005A2000001D2BAD4E875.png" style="display:inline-block; margin:4px;width:17.997cm;height:5.816cm;" class="odt-zoomable" data-zoom-src="images/10000000000005A2000001D2BAD4E875.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006ED0000021F92D1C951.png" style="display:inline-block; margin:4px;width:17.997cm;height:5.512cm;" class="odt-zoomable" data-zoom-src="images/10000000000006ED0000021F92D1C951.png" /></td></tr></table>
+
+<p>La procédure [GridViewSimulations_RowDeleting ] qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> GridViewSimulations_RowDeleting(<span style="color:#0000ff">object</span> sender, <span style="color:#2b91af">GridViewDeleteEventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// on récupère les simulations dans la session</span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// on supprime la simulation désignée (e.RowIndex est le n° de la ligne supprimée)</span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// reste-t-il des simulations ? </span></span>
+<span class="odt-code-line">        <span style="color:#0000ff">if</span> (...)</span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// on remplit le GridView </span></span>
+<span class="odt-code-line"> ...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">        <span style="color:#0000ff">else</span></span>
+<span class="odt-code-line">        {</span>
+<span class="odt-code-line">            <span style="color:#008000">// vue [SimulationsVides] </span></span>
+<span class="odt-code-line">            ...</span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<h3 id="869-action-terminer-la-session">8.6.9. Action : Terminer la session</h3>
+<p>L&#x27;utilisateur peut demander à terminer sa session de simulations. Cela abandonne le contenu de sa session et présente un formulaire vide :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000056B000001AF7C8AFA8C.png" style="display:inline-block; margin:4px;width:17.997cm;height:5.592cm;" class="odt-zoomable" data-zoom-src="images/100000000000056B000001AF7C8AFA8C.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004C900000184033ED0E4.png" style="display:inline-block; margin:4px;width:16.207cm;height:5.133cm;" class="odt-zoomable" data-zoom-src="images/10000000000004C900000184033ED0E4.png" /></td></tr></table>
+
+<p>La procédure qui traite cette action pourrait ressembler à ce qui suit :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#0000ff">protected</span> <span style="color:#0000ff">void</span> LinkButtonTerminerSession_Click(<span style="color:#0000ff">object</span> sender, System.<span style="color:#2b91af">EventArgs</span> e)</span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">        <span style="color:#008000">// on abandonne la session </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// afficher la vue [saisies] </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">        <span style="color:#008000">// positionnement menu </span></span>
+<span class="odt-code-line">        ...</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Question</strong> : compléter le code ci-dessus</p>
+<hr style="border:0; border-top:0.06pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p><strong>Travail pratique</strong> : mettre en oeuvre sur machine l&#x27;application web précédente. Ajoutez-lui un comportement Ajax.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
+        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
+        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
